@@ -1,10 +1,9 @@
 package iss.ibf.ssf_assessment.services;
 
+import java.io.Reader;
+import java.io.StringReader;
 import java.util.List;
 
-import org.json.JSONArray;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +16,8 @@ import com.google.gson.GsonBuilder;
 import iss.ibf.ssf_assessment.models.Quotation;
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
-import jakarta.json.JsonArrayBuilder;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonReader;
 
 @Service
 public class QuotationService {
@@ -47,7 +47,25 @@ public class QuotationService {
 
         System.out.printf("Payload: %s\n", payload);
 
-        return new Quotation();
+        Quotation quotation = new Quotation();
+
+        Reader reader = new StringReader(payload);
+        JsonReader jsonReader = Json.createReader(reader);
+        JsonObject orderJson = jsonReader.readObject();
+
+        String quoteId = orderJson.getJsonString("quoteId").toString();
+        quotation.setQuoteId(quoteId);
+        System.out.printf("QuoteId: %s\n", quoteId);
+
+        JsonArray quotationsArray = orderJson.getJsonArray("quotations");
+        for (int i = 0; i < quotationsArray.size(); i++) {
+            JsonObject quotationObject = quotationsArray.getJsonObject(i);
+            String item = quotationObject.getJsonString("item").toString();
+            String unitPrice = quotationObject.getJsonString("unitPrice").toString();
+            float unitPriceFloat = Float.parseFloat(unitPrice);
+        }
+
+        return quotation;
     }
 
 }

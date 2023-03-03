@@ -66,7 +66,7 @@ public class PurchaseOrderController {
         
         Cart cart = (Cart)session.getAttribute("cart");
         
-        ShippingAddress shippingAddress = (ShippingAddress) session.getAttribute("shippingaddress");
+        session.setAttribute("shippingaddress", new ShippingAddress());
 
         System.out.println(cart.toString());
 
@@ -79,6 +79,7 @@ public class PurchaseOrderController {
     @PostMapping(path = "/shippingaddress/checkout")
     public String checkout(@Valid ShippingAddress shippingAddress, BindingResult result, Model model, HttpSession session) throws Exception {
         Cart cart = (Cart)session.getAttribute("cart");
+        shippingAddress = (ShippingAddress) session.getAttribute("shippingaddress");
         
         if (result.hasErrors()) {
             model.addAttribute("shippingaddress", shippingAddress);
