@@ -2,9 +2,7 @@ package iss.ibf.ssf_assessment.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Cart implements Serializable {
 
@@ -34,7 +32,7 @@ public class Cart implements Serializable {
 
     @Override
     public String toString() {
-        return "Cart [contents=" + contents + "]";
+        return "Cart:" + contents + "]";
     }
     
 }

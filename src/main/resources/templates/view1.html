@@ -53,21 +53,22 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr data-th-if="${#lists.isEmpty(cart.contents)}">
-						<div style="color:red">Your cart is currently empty</div>
-					</tr>
 					<tr data-th-unless="${#lists.isEmpty(cart.contents)}">
 						<tr data-th-each="it : ${cart.contents}" data-th-object="${it}">
 							<td data-th-text="*{name}"></td>
 							<td data-th-text="*{quantity}"></td>
 						</tr>
 					</tr>
+					<tr data-th-if="${#lists.isEmpty(cart.contents)}">
+						<div style="color:red">Your cart is currently empty</div>
+					</tr>
 				</tbody>
 			</table>
 
 			<div>
 				<button type="submit">Add</button>
-				<button type="button">Next</button>
+				<button type="submit" formmethod="GET" formaction="/shippingaddress">Next</button>
+				<!-- formmethod="GET" formaction="/shippingaddress" -->
 			</div>
 	</form>
 	</body>

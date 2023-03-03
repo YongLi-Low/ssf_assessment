@@ -41,7 +41,7 @@ public class Item implements Serializable{
 
     @Override
     public String toString() {
-        return "Item [name=" + name + ", quantity=" + quantity + "]";
+        return "Item{name=%s, quantity=%d}".formatted(name, quantity);
     }
     
 }
