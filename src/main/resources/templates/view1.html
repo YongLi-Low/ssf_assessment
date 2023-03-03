@@ -12,48 +12,63 @@
 
 		<h1>Shopping Cart</h1>
 
-		<table>
-			<tr>
-				<td>Item:</td>
-				<td>
-					<select name="item">
-						<option value="apple">Apple</option>
-						<option value="orange">Orange</option>
-						<option value="bread">Bread</option>
-						<option value="cheese">Cheese</option>
-						<option value="chicken">Chicken</option>
-						<option value="mineral_water">Mineral Water</option>
-						<option value="instant_noodles">Instant Noodles</option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td>Quantity:</td>
-				<td>
-					<input type="number" name="quantity" size="4" placeholder="Quantity">
-				</td>
-			</tr>
-		</table>
-
-		<table border="1" style="margin-top: 2vh; margin-bottom: 2vh;">
-			<thead>
+		<form method="POST" data-th-action="@{/}" data-th-object="${item}">
+			<table>
 				<tr>
-					<th>Item</th>
-					<th>Quantity</th>
+					<td>Item:</td>
+					<td>
+						<select name="item" data-th-field="*{name}">
+							<option value="apple" data-th-field="*{name}">Apple</option>
+							<option value="orange" data-th-field="*{name}">Orange</option>
+							<option value="bread" data-th-field="*{name}">Bread</option>
+							<option value="cheese" data-th-field="*{name}">Cheese</option>
+							<option value="chicken" data-th-field="*{name}">Chicken</option>
+							<option value="mineral_water" data-th-field="*{name}">Mineral Water</option>
+							<option value="instant_noodles" data-th-field="*{name}">Instant Noodles</option>
+						</select>
+					</td>
 				</tr>
-			</thead>
-			<tbody>
+				<tr data-th-if="${#fields.hasErrors('name')}">
+					<td>
+						<span data-th-errors="*{name}"></span>
+					</td>
+				</tr>
 				<tr>
-					<td>Apple</td>
-					<td>3</td>
+					<td>Quantity:</td>
+					<td>
+						<input type="number" name="quantity" size="4" placeholder="Quantity" data-th-field="*{quantity}">
+					</td>
 				</tr>
-			</tbody>
-		</table>
+				<tr data-th-if="${#fields.hasErrors('quantity')}">
+					<td>
+						<span data-th-errors="*{quantity}"></span>
+					</td>
+				</tr>
+			</table>
+			<table border="1" style="margin-top: 2vh; margin-bottom: 2vh;">
+				<thead>
+					<tr>
+						<th>Item</th>
+						<th>Quantity</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-th-if="${#lists.isEmpty(cart.contents)}">
+						<div style="color:red">Your cart is currently empty</div>
+					</tr>
+					<tr data-th-unless="${#lists.isEmpty(cart.contents)}">
+						<tr data-th-each="it : ${cart.contents}" data-th-object="${it}">
+							<td data-th-text="*{name}"></td>
+							<td data-th-text="*{quantity}"></td>
+						</tr>
+					</tr>
+				</tbody>
+			</table>
 
-		<div>
-			<button type="button">Add</button>
-			<button type="button">Next</button>
-		</div>
-		
+			<div>
+				<button type="submit">Add</button>
+				<button type="button">Next</button>
+			</div>
+	</form>
 	</body>
 </html>
