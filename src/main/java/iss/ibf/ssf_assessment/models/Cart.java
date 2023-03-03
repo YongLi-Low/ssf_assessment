@@ -30,6 +30,15 @@ public class Cart implements Serializable {
         }
     }
 
+    public List<String> getCartItemsToList(List<Item> contents) {
+
+        List<String> listOfItems = new ArrayList<>();
+        for (Item item: contents) {
+            listOfItems.add(item.getName());
+        }
+        return listOfItems;
+    }
+
     @Override
     public String toString() {
         return "Cart:" + contents + "]";

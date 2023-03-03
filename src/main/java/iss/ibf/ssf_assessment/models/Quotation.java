@@ -1,4 +1,4 @@
-// TODO: Add your package here
+package iss.ibf.ssf_assessment.models;
 
 // DO NOT MODIFY THIS FILE
 

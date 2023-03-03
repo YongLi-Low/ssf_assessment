@@ -16,18 +16,22 @@
                 <td>Name:</td>
                 <td>
                     <input type="text" size="30" placeholder="Your name" data-th-field="*{username}">
-                    <div data-th-if="${#fields.hasErrors('username')}">
-                        <span data-th-errors="*{username}"></span>
-                    </div>
+                </td>
+            </tr>
+            <tr data-th-if="${#fields.hasErrors('username')}">
+                <td>
+                    <span data-th-errors="*{username}"></span>
                 </td>
             </tr>
             <tr>
                 <td>Address:</td>
                 <td>
                     <input type="text" size="30" placeholder="Your address" data-th-field="*{address}">
-                    <div data-th-if="${#fields.hasErrors('address')}">
-                        <span data-th-errors="*{address}"></span>
-                    </div>
+                </td>
+            </tr>
+            <tr data-th-if="${#fields.hasErrors('address')}">
+                <td>
+                    <span data-th-errors="*{address}"></span>
                 </td>
             </tr>
             <tr>
