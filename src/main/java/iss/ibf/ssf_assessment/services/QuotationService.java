@@ -57,13 +57,13 @@ public class QuotationService {
         quotation.setQuoteId(quoteId);
         System.out.printf("QuoteId: %s\n", quoteId);
 
-        JsonArray quotationsArray = orderJson.getJsonArray("quotations");
-        for (int i = 0; i < quotationsArray.size(); i++) {
-            JsonObject quotationObject = quotationsArray.getJsonObject(i);
-            String item = quotationObject.getJsonString("item").toString();
-            String unitPrice = quotationObject.getJsonString("unitPrice").toString();
-            float unitPriceFloat = Float.parseFloat(unitPrice);
-        }
+        // JsonArray quotationsArray = orderJson.getJsonArray("quotations");
+        // for (int i = 0; i < quotationsArray.size(); i++) {
+        //     JsonObject quotationObject = quotationsArray.getJsonObject(i);
+        //     String item = quotationObject.getJsonString("item").toString();
+        //     String unitPrice = quotationObject.getJsonString("unitPrice").toString();
+        //     float unitPriceFloat = Float.parseFloat(unitPrice);
+        // }
 
         return quotation;
     }
